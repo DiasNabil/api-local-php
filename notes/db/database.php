@@ -16,7 +16,7 @@
   * on se connecte a notre db en créant une nvlle instance de PDO avec les info de notre db
   */
  $dbh = new PDO('mysql:host=127.0.0.1;dbname=notes', $user, $password);
- print "\n connecté à la base de donnée !<br> \n";
+ echo "\n connecté à la base de donnée ! \n";
  
  }  catch (PDOException $e) {
      print "Erreur !: " . $e->getMessage() . "<br/>";

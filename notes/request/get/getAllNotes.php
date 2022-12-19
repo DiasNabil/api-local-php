@@ -4,41 +4,11 @@
 */
 header('Content-type: application/json');
 
-require '../../db/database.php';
 
-/**
- * function prepare() + executeb() preferable a query () pour faire des requete a db 
- * prepare() : prepare une requete à l'execution par la methode execute() et return un object PDOstatement (requete preparer en attente d'execution)
- * execute() : execute une requete preparer (via prepare()) elle return true en cas de succès ou false si il ya une erreur 
- * fetchAll(): return une liste de toute les lignes de la requette executer sous forme d'array
- */
-$getAllNotes = $dbh->prepare("SELECT * FROM notes");
-$getAllNotes->execute();
-$notes = format($getAllNotes->fetchAll()) ;
+require 'get.php';
 
-/** resultat de la requete getAllNotes au format json */
-echo json_encode($notes);
+/** resultat de la requete getAllNotes du fichier get.php au format json */
+echo json_encode($state['response']);
 
-
-
-function format($notes){
-
-    $allNotes = array();
-    $allNotes['message'] = "liste des notes bien recupérée";
-    $allNotes['data'] = array();
-
-    foreach($notes as $note){
-        $array = array();
-        $array['id'] = $note["id"];
-        /** fonction explode() transforme une chaine de caractere en tableau */
-        $array['tag'] = explode("," , $note["tag"]);
-        $array["content"] = $note["content"];
-        $array["date"] = $note["date"];
-
-        array_push($allNotes['data'], $array);
-    };
-
-    return $allNotes;
-};
 
 ?>

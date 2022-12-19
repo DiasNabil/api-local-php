@@ -3,7 +3,7 @@
 require '../../db/database.php';
 
 $tag = "%".$_POST['tag']."%";
-echo $tag;
+
 
 $getNotesByTag = $dbh->prepare("SELECT * FROM notes WHERE tag LIKE :tag" );
 /**methode PDOstatement bindParam() elle sert a lié une variable php a un parametre (:param) qu'on pourra utiliser dans des requetes SQL*/
@@ -11,16 +11,16 @@ $getNotesByTag->bindParam(':tag', $tag);
 $getNotesByTag->execute();
 
 /** resultat de la requete getNotesById au format json */
-$notes = format($getNotesByTag->fetchAll());
-echo json_encode($notes);
+format($getNotesByTag->fetchAll());
+echo json_encode($state['response']);
 
 
 function format($notes){
 
-    $formatNotes = array();
-    $formatNotes['message'] = "les notes contenant le tag ".$_POST['tag']." ont bien été recupérées";
-    $formatNotes['data'] = array();    
+    global $state;
 
+    $state['response']['message'] = "les notes contenant le tag ".$_POST['tag']." ont bien été recupérées";
+        
     foreach ($notes as $note) {
         $array = array();
         $array['id'] = $note["id"];
@@ -29,10 +29,9 @@ function format($notes){
         $array["content"] = $note["content"];
         $array["date"] = $note["date"];
 
-        array_push($formatNotes['data'], $array);
+        array_push($state['response']['data'], $array);
     }
 
-    return $formatNotes;
 };
 
 ?>

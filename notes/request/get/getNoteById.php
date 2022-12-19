@@ -10,24 +10,23 @@ $getNoteById->bindParam(':id', $id);
 $getNoteById->execute();
 
 /** resultat de la requete getNotesById au format json */
-$note = format($getNoteById->fetch());
-echo json_encode($note);
+format($getNoteById->fetch());
+echo json_encode($state['response']);
 
 
 function format($note){
 
-    $formatNotes = array();
-    $formatNotes['message'] = "note n°".$note['id']." bien recupérée";
+    global $state;
 
-    $formatNotes['data'] = array();    
-    $formatNotes['data']['id'] = $note["id"];
+    $formatNotes = array();    
+    $formatNotes['id'] = $note["id"];
     /** fonction explode() transforme une chaine de caractere en tableau */
-    $formatNotes['data']['tag'] = explode("," , $note["tag"]);
-    $formatNotes['data']["content"] = $note["content"];
-    $formatNotes['data']["date"] = $note["date"];
+    $formatNotes['tag'] = explode("," , $note["tag"]);
+    $formatNotes["content"] = $note["content"];
+    $formatNotes["date"] = $note["date"];
 
-
-    return $formatNotes;
+    $state['response']['message'] = "note n°".$note['id']." bien recupérée";
+    array_push($state['response']['data'] , $formatNotes);
 };
 
 ?>

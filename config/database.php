@@ -1,12 +1,4 @@
 <?php
-
- $state = array();
- $state['db'] = '';
- $state['response'] = array();
- $state['response']['message']='';
- $state['response']['data']= array();
-
-
  class Database {
 
     /**
@@ -35,7 +27,6 @@
                 $this->user,
                 $this->password
             );
-            //$state['db'] = 'connected';
 
             }  catch (PDOException $e) {
                 print "Erreur !: " . $e->getMessage() . "<br/>";

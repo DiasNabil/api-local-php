@@ -1,17 +1,28 @@
-<h1>TEST prise de note</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une note</title>
+</head>
+<body>
+    <h1>Ajouter une note</h1>
 
-<form action="http://api.local/notes/add" method="post">
-    <fieldset>
-        <label for="tag"> Tag </label>
-        <br>
-        <input type="text" name="tag">
-        <br>
-        <hr>
-        <label for="content">Contenu</label>
-        <br>
-        <textarea name="content" id="content"  cols="30" rows="10"></textarea>
-        <br>
-        <hr>
-        <input type="submit" value="envoyer">
-    </fieldset>
-</form>
+    <form action="http://api.local/notes/add" method="post">
+        <fieldset>
+            <label for="tag"> Tag </label>
+            <br>
+            <input type="text" name="tag">
+            <br>
+            <hr>
+            <label for="content">Contenu</label>
+            <br>
+            <textarea name="content" id="content"  cols="30" rows="10"></textarea>
+            <br>
+            <hr>
+            <input type="submit" value="envoyer">
+        </fieldset>
+    </form>
+</body>
+</html>

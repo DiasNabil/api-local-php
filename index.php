@@ -75,7 +75,6 @@ try {
         /**
          * generer une page d'accueil
          */
-
          echo '
          <!DOCTYPE html>
             <html lang="fr">

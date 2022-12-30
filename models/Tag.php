@@ -1,10 +1,4 @@
 <?php
-    /**
-     * fonction liste de tout les tag 
-     * liste des notes classé par tag 
-     * liste des notes selon le tag rechercher 
-     */
-
 
     class Tag{
 
@@ -28,16 +22,10 @@
             $getNotesByTag->bindParam(':tag', $tag);
             $getNotesByTag->execute();
         
-            //$state['response']['message'] = "les notes contenant le tag '".$tag."'  ont bien été recupérées";
             return $this->format($getNotesByTag->fetchAll());
-        
-            //return $state['response'];
         }
 
         public function sortByTag($notes) {
-            //global $state;
-            //$all = getAllNotes();
-        
             $tags = array();
             $sortBytag = array();
         
@@ -67,19 +55,12 @@
         
                 array_push($sortBytag, $array);
             }
-        
-            //$state['response']['message'] = 'Liste des notes trier par tag';
-            //$state['response']['data'] = $sortBytag;
-        
-            //return $state['response'];
-
-            return $sortBytag;
-            
+    
+            return $sortBytag;        
         }
 
-        function format($fetch){
+        private function format($fetch){
 
-            //global $state;
             $data = array();
             
             foreach($fetch as $note){
@@ -95,7 +76,6 @@
                                 
                     }
                 }    
-                //array_push($state['response']['data'] , $array);
                 array_push($data , $array);
             };
             return $data;

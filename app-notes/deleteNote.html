@@ -1,12 +1,23 @@
-<h1>Test supprimer une note par son id</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer une note</title>
+</head>
+<body>
+    <h1>Supprimer une note par son id</h1>
 
-<form action="http://api.local/notes/delete" method="post">
-    <fieldset>
-        <label for="id"> id </label>
-        <br>
-        <input type="text" name="id">
-        <br>
-        <hr>
-        <input type="submit" value="envoyer">
-    </fieldset>
-</form>
+    <form action="http://api.local/notes/delete" method="post">
+        <fieldset>
+            <label for="id"> id </label>
+            <br>
+            <input type="text" name="id">
+            <br>
+            <hr>
+            <input type="submit" value="envoyer">
+        </fieldset>
+    </form>
+</body>
+</html>

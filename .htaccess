@@ -1,0 +1,21 @@
+#----------------------------
+# config des redirections 
+#----------------------------
+
+# le server doit suivre les liens symboliques
+Options +FollowSymlinks
+
+# Activation du module de réécriture d'url 'mod_rewrite'
+RewriteEngine On 
+
+
+#---------------------------
+# Regles de réecriture des url
+# DocumentRoot : api.local/ (c'est l'endroit ou est stocker .htaccess)
+#---------------------------
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php?request=$1 [NC]
+

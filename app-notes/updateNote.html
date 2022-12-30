@@ -1,7 +1,11 @@
-<h1>TEST prise de note</h1>
+<h1>test modifier une note</h1>
 
-<form action="request/createNotes.php" method="post">
+<form action="http://api.local/notes/update" method="post">
     <fieldset>
+        <label for="id"> id </label>
+        <br>
+        <input type="text" name="id">
+        <br>
         <label for="tag"> Tag </label>
         <br>
         <input type="text" name="tag">

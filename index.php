@@ -78,29 +78,29 @@ try {
 
          echo '
          <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>app-notes | API</title>
-</head>
-<body>
-<h1>app-notes | API</h1>
+            <html lang="fr">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>app-notes | API</title>
+            </head>
+            <body>
+            <h1>app-notes | API</h1>
 
-<h2> Prise de note</h2>
-<ul>
-    <li><a href="/app-notes/test_form.html">Ajouter une nouvelle note</a></li>
-    <li><a href="/app-notes/updateNote.html">Modifier une nouvelle note</a></li>
-    <li><a href="/app-notes/deleteNote.html">Supprimer une note</a></li>
-    <li><a href="http://api.local/notes">Liste des notes</a></li>
-    <li><a href="http://api.local/notes/bytags">Liste des notes trier par tag</a></li>
-    <li><a href="/app-notes/getNotesById.php">Trouver une note par son id</a></li>
-    <li><a href="/app-notes/getNoteByTag.php">Trouver des notes par tag</a></li>
-    
-</ul>
-</body>
-</html>
+            <h2> Prise de note</h2>
+            <ul>
+                <li><a href="/app-notes/test_form.html">Ajouter une nouvelle note</a></li>
+                <li><a href="/app-notes/updateNote.html">Modifier une nouvelle note</a></li>
+                <li><a href="/app-notes/deleteNote.html">Supprimer une note</a></li>
+                <li><a href="http://api.local/notes">Liste des notes</a></li>
+                <li><a href="http://api.local/notes/bytags">Liste des notes trier par tag</a></li>
+                <li><a href="/app-notes/getNotesById.php">Trouver une note par son id</a></li>
+                <li><a href="/app-notes/getNoteByTag.php">Trouver des notes par tag</a></li>
+                
+            </ul>
+            </body>
+            </html>
          ';
         
     }

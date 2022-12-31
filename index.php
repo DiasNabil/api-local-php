@@ -94,8 +94,8 @@ try {
                 <li><a href="/app-notes/deleteNote.html">Supprimer une note</a></li>
                 <li><a href="http://api.local/notes">Liste des notes</a></li>
                 <li><a href="http://api.local/notes/bytags">Liste des notes trier par tag</a></li>
-                <li><a href="/app-notes/getNotesById.php">Trouver une note par son id</a></li>
-                <li><a href="/app-notes/getNoteByTag.php">Trouver des notes par tag</a></li>
+                <li><a href="/app-notes/getNoteById.php">Trouver une note par son id</a></li>
+                <li><a href="/app-notes/getNotesByTag.php">Trouver des notes par tag</a></li>
                 
             </ul>
             </body>

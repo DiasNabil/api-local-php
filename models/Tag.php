@@ -42,7 +42,7 @@
         
             foreach ($tags as $tag) {
                 $array = array();
-                $array['tag'] = $tag;
+                $array['name'] = $tag;
                 $array['notes']= array();  
         
                 
@@ -69,7 +69,7 @@
                 foreach ($note as $key => $value) {
                     if (!is_numeric($key)) {
                         if($key === 'tag'){
-                            $array['tag'] = explode("," , $note["tag"]);
+                            $array['name'] = explode("," , $note["tag"]);
                         }else {
                             $array[$key] = $note[$key];    
                         }

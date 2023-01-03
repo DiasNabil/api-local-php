@@ -34,8 +34,11 @@ class Note {
          */
         $getAllNotes = $db->prepare("SELECT * FROM $table");
         $getAllNotes->execute();
-
-        return $this->format($getAllNotes->fetchAll());
+        $data = $this->format($getAllNotes->fetchAll());
+        
+        if($data != []){
+            return $data;
+        }else return 'Notes introuvable';
     }
 
     public function getNoteById($id){
@@ -48,7 +51,12 @@ class Note {
         $getNoteById->execute();
         
         /** resultat de la requete getNoteById au format json */
-        return $this->format($getNoteById->fetchAll());
+        $data = $this->format($getNoteById->fetchAll());
+
+        if($data !== []){
+            return $data;    
+        }else return 'Note introuvable';
+        
     }
 
     public function createNote($tag, $content){
@@ -57,15 +65,19 @@ class Note {
         $db = $this->connect;
         $table = $this->table;
         
+        if ($tag != '' && $content != '') {
+            $createNote = $db->prepare("INSERT INTO $table (tag , content) VALUES (:tag , :content)" );
+            $createNote->bindParam(':tag', $tag);
+            $createNote->bindParam(':content', $content);
+            $createNote->execute();
+    
+            $displayCreatedNote = $db->prepare("SELECT * FROM $table ORDER BY id DESC LIMIT 1;");
+            $displayCreatedNote->execute();
+            return $this->format($displayCreatedNote->fetchAll());
+        }else {
+            return 'champs tag ou contenu manquant';
+        }
 
-        $createNote = $db->prepare("INSERT INTO $table (tag , content) VALUES (:tag , :content)" );
-        $createNote->bindParam(':tag', $tag);
-        $createNote->bindParam(':content', $content);
-        $createNote->execute();
-
-        $displayCreatedNote = $db->prepare("SELECT * FROM $table ORDER BY id DESC LIMIT 1;");
-        $displayCreatedNote->execute();
-        return $this->format($displayCreatedNote->fetchAll());
     }
 
     public function deleteNote($id){
@@ -78,11 +90,13 @@ class Note {
         $displayDeletedNote->execute();
         $data = $this->format($displayDeletedNote->fetchAll());
 
-        $deleteNote = $db->prepare("DELETE FROM $table WHERE id LIKE :id" );
-        $deleteNote->bindParam(':id', $id);
-        $deleteNote->execute();
+        if($data !== []){
+            $deleteNote = $db->prepare("DELETE FROM $table WHERE id LIKE :id" );
+            $deleteNote->bindParam(':id', $id);
+            $deleteNote->execute();
+            return $data;    
+        }else return 'Note introuvable';
 
-        return $data;
     }
 
     public function updateNote($id){
@@ -92,18 +106,24 @@ class Note {
         $tag = $this->formatTag($_POST['tag']);
         $content = $_POST['content'];
 
-        $updateNote = $db->prepare("UPDATE $table SET tag = :tag , content = :content WHERE id LIKE :id;" );
-        $updateNote->bindParam(':id', $id);
-        $updateNote->bindParam(':tag', $tag);
-        $updateNote->bindParam(':content', $content);
-        $updateNote->execute();
-
-        $displayUpdatedNote = $db->prepare("SELECT * FROM $table WHERE id LIKE :id");
-        $displayUpdatedNote->bindParam(':id', $id);
-        $displayUpdatedNote->execute();
-        $data = $this->format($displayUpdatedNote->fetchAll());
-
-        return $data;
+        if ($tag != '' && $content != '') {
+            $updateNote = $db->prepare("UPDATE $table SET tag = :tag , content = :content WHERE id LIKE :id;" );
+            $updateNote->bindParam(':id', $id);
+            $updateNote->bindParam(':tag', $tag);
+            $updateNote->bindParam(':content', $content);
+            $updateNote->execute();
+    
+            $displayUpdatedNote = $db->prepare("SELECT * FROM $table WHERE id LIKE :id");
+            $displayUpdatedNote->bindParam(':id', $id);
+            $displayUpdatedNote->execute();
+            $data = $this->format($displayUpdatedNote->fetchAll());
+            if($data !== []){
+                return $data;    
+            }else return 'Note introuvable';
+            
+        }else {
+            return 'champs tag ou contenu manquant';
+        }
     }
 
     /**

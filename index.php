@@ -5,6 +5,8 @@
  * et l'action a mener dans ces routes 
  * 
  */
+
+
 require 'config/database.php';
 require 'models/Note.php';
 require 'models/Tag.php';

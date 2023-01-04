@@ -42,7 +42,7 @@
         
             foreach ($tags as $tag) {
                 $array = array();
-                $array['name'] = $tag;
+                $array['name                                                                                                                                                                                                                                                                                                             '] = $tag;
                 $array['notes']= array();  
         
                 

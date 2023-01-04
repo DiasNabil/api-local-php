@@ -92,8 +92,8 @@ try {
                 <li><a href="/app-notes/test_form.html">Ajouter une nouvelle note</a></li>
                 <li><a href="/app-notes/updateNote.html">Modifier une nouvelle note</a></li>
                 <li><a href="/app-notes/deleteNote.html">Supprimer une note</a></li>
-                <li><a href="http://api.local/notes">Liste des notes</a></li>
-                <li><a href="http://api.local/notes/bytags">Liste des notes trier par tag</a></li>
+                <li><a href="/notes/">Liste des notes</a></li>
+                <li><a href="/notes/bytags">Liste des notes trier par tag</a></li>
                 <li><a href="/app-notes/getNoteById.php">Trouver une note par son id</a></li>
                 <li><a href="/app-notes/getNotesByTag.php">Trouver des notes par tag</a></li>
                 

@@ -3,7 +3,6 @@
  * Role de controller 
  * il gere chaque route de l'api 
  * et l'action a mener dans ces routes 
- * 
  */
 
 
@@ -14,6 +13,14 @@ require 'models/Tag.php';
 $db = new Database;
 $note = new Note($db);
 $tag = new Tag($db);
+
+
+    header("Access-Control-Allow-Origin: *");
+    //header('Access-Control-Allow-Credentials: true');
+    //header("Access-Control-Allow-Headers: X-Requested-With");
+    //header('Access-Control-Max-Age: 86400');    // cache for 1 day
+
+
 
 
 // Gestion des routes de l'api
@@ -36,15 +43,24 @@ try {
                         break;
 
                     case 'add':
-                        toJSON($note->createNote($_POST['tag'],$_POST['content']));
+                        $data =  file_get_contents('php://input');
+                        $data = json_decode($data,true);
+
+                        toJSON($note->createNote($data));
                         break;
 
                     case 'delete':
-                        toJSON($note->deleteNote($_POST['id']));
+                        $data =  file_get_contents('php://input');
+                        $data = json_decode($data,true);
+                        
+                        toJSON($note->deleteNote($data));
                         break;
 
                     case 'update':
-                        toJSON($note->updateNote($_POST['id']));
+                        $data =  file_get_contents('php://input');
+                        $data = json_decode($data,true);
+                        
+                        toJSON($note->updateNote($data));
                         break;
 
                     case 'bytags': 

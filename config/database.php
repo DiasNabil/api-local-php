@@ -8,7 +8,7 @@
 
     private $user = 'root';
     private $password ='';
-    private $host = '127.0.0.1';
+    private $host = 'localhost';
     private $dbName = 'notes';
 
 

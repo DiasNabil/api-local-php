@@ -16,13 +16,14 @@
 
             $db = $this->connect;
             $table = $this->table;
+            $tagSQL = "%$tag%";
 
             $getNotesByTag = $db->prepare("SELECT * FROM $table WHERE tag LIKE :tag" );
             /**methode PDOstatement bindParam() elle sert a lié une variable php a un parametre (:param) qu'on pourra utiliser dans des requetes SQL*/
-            $getNotesByTag->bindParam(':tag', $tag);
+            $getNotesByTag->bindParam(':tag', $tagSQL);
             $getNotesByTag->execute();
         
-            return $this->format($getNotesByTag->fetchAll());
+            return $this->format($getNotesByTag->fetchAll(), $tag);
         }
 
         public function sortByTag($notes) {
@@ -41,8 +42,9 @@
             natsort($tags);
         
             foreach ($tags as $tag) {
+
                 $array = array();
-                $array['name                                                                                                                                                                                                                                                                                                             '] = $tag;
+                $array['name'] = $tag;
                 $array['notes']= array();  
         
                 
@@ -59,26 +61,31 @@
             return $sortBytag;        
         }
 
-        private function format($fetch){
+        private function format($notes , $tagName){
 
             $data = array();
+
+            $tag = array();
+            $tag['name'] = $tagName;
+            $tag['notes']= [];
             
-            foreach($fetch as $note){
+            foreach($notes as $note){
                 $array = array();
-        
                 foreach ($note as $key => $value) {
                     if (!is_numeric($key)) {
                         if($key === 'tag'){
-                            $array['name'] = explode("," , $note["tag"]);
+                            $array['tag'] = explode("," , $note["tag"]);
                         }else {
                             $array[$key] = $note[$key];    
                         }
                                 
                     }
                 }    
-                array_push($data , $array);
+                array_push($tag['notes'] , $array);
+                
             };
+
+            array_push($data, $tag);
             return $data;
         }
-
     }

@@ -14,6 +14,7 @@ RewriteEngine On
 # DocumentRoot : api.local/ (c'est l'endroit ou est stocker .htaccess)
 #---------------------------
 
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
